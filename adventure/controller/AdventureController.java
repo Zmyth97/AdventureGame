@@ -1,21 +1,24 @@
 package adventure.controller;
 
+
+
 import adventure.model.Adventure;
 import adventure.view.AdventureFrame;
 import adventure.view.AdventurePanel;
-import adventure.view.AdventureView;
 
 public class AdventureController
 {
 	private AdventureFrame appFrame;
 	private Adventure myAdventure;
+	private AdventurePanel myPanel;
 	public static String[] StoryOptions;
 
 	public AdventureController()
 	{
 		appFrame = new AdventureFrame(this);
 		buildStoryOptionsArray();
-		myAdventure = new Adventure(null);
+		myPanel = new AdventurePanel(null);
+		myAdventure = new Adventure(null, myPanel);
 	}
 
 	/**
@@ -43,9 +46,18 @@ public class AdventureController
 		}
 
 		return result;
-
 	}
 
+	public int optionChosen()
+	{
+		System.out.println("Before Test");
+		int optionChosen = myPanel.OptionCount();
+		System.out.println("Test");
+		return optionChosen;
+	}
+	
+	
+	
 	private void buildStoryOptionsArray()
 	{
 		StoryOptions = new String[10];

@@ -27,40 +27,40 @@ public class AdventurePanel extends JPanel
 	private JScrollPane dialoguePane;
 	private JLabel lblSuccesses;
 	private JLabel lblTheAdventureGame;
-	public int optionChoice;
-	
-	public AdventurePanel(final AdventureController baseController)
+	public int optionPick;
+
+	public AdventurePanel(AdventureController baseController)
 	{
 		this.baseController = baseController;
-		
+
 		secondOptionButton = new JButton("Option 2");
-		dialogueArea = new JTextArea("You decide to travel in the woods in search of a great treasure! On one fateful morning, your journey begins.... \n \n" +
-				"You come across a cave in the forest. A Dragon emerges to attack you. \n  Option 1: Throw your sword at it  \n  Option 2: Pretend to be dead");
+		dialogueArea = new JTextArea("You decide to travel in the woods in search of a great treasure! On one fateful morning, your journey begins.... \n \n"
+				+ "You come across a cave in the forest. A Dragon emerges to attack you. \n  Option 1: Throw your sword at it  \n  Option 2: Pretend to be dead");
 		baseLayout = new SpringLayout();
 		firstOptionButton = new JButton("Option 1");
 		dialoguePane = new JScrollPane();
 		dialogueArea.setBackground(Color.LIGHT_GRAY);
-		optionChoice= 0;
-		
+		optionPick = 0;
+
 		setupPane();
 		setupPanel();
 		setupLayout();
 		setupListeners();
-		
+
 	}
-	
+
 	private void setupPane()
 	{
 		dialogueArea.setLineWrap(true);
 		dialogueArea.setWrapStyleWord(true);
 		dialogueArea.setEditable(false);
 	}
-	
+
 	public void setSuccessCount(int successCount)
 	{
 		lblSuccesses.setText("Successes: " + successCount);
 	}
-	
+
 	private void setupPanel()
 	{
 		this.add(dialogueArea);
@@ -69,9 +69,23 @@ public class AdventurePanel extends JPanel
 		this.add(firstOptionButton);
 		this.add(dialoguePane);
 		this.add(secondOptionButton);
-		
+
 	}
-	
+
+	public int OptionCount()
+	{
+		int optionPicked = 0;
+		if(optionPick == 1)
+		{
+			optionPicked = 1;
+		}
+		else if(optionPick == 2)
+		{
+			optionPicked = 2;		
+		}
+		return optionPicked;
+	}
+
 	private void setupLayout()
 	{
 		JLabel lblSuccesses = new JLabel("Successes: ");
@@ -101,7 +115,7 @@ public class AdventurePanel extends JPanel
 		add(lblSuccesses);
 		add(lblTheAdventureGame);
 	}
-	
+
 	private void setupListeners()
 	{
 		firstOptionButton.addActionListener(new ActionListener()
@@ -110,27 +124,25 @@ public class AdventurePanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent click)
 			{
+				System.out.println("Button works");
 				dialogueArea.setText(baseController.getStoryResult());
+				optionPick = 1;
+				OptionCount();
 			}
-			
+
 		});
-		
+
 		secondOptionButton.addActionListener(new ActionListener()
 		{
-
 			@Override
 			public void actionPerformed(ActionEvent click)
 			{
 				dialogueArea.setText(baseController.getStoryResult());
+				optionPick = 2;
 			}
-			
+
 		});
-		
-	}
-	
-	public int optionChoice()
-	{
-		return optionChoice;		
+
 	}
 
 }
