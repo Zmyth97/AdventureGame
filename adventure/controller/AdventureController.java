@@ -17,13 +17,10 @@ public class AdventureController
 	{
 		appFrame = new AdventureFrame(this);
 		buildStoryOptionsArray();
-		myPanel = new AdventurePanel(null);
-		myAdventure = new Adventure(null, myPanel);
+		myPanel = new AdventurePanel(this);
+		myAdventure = new Adventure(this, myPanel);
 	}
 
-	/**
-	 * Main part of program, runs app.
-	 */
 
 	public void start()
 	{
@@ -50,9 +47,7 @@ public class AdventureController
 
 	public int optionChosen()
 	{
-		System.out.println("Before Test");
 		int optionChosen = myPanel.OptionCount();
-		System.out.println("Test");
 		return optionChosen;
 	}
 	

@@ -48,7 +48,6 @@ public class Adventure
 
 	public int getSuccessResult()
 	{
-		System.out.println("Get SuccessResult works #Test");
 		return successResult;
 	}
 
@@ -70,16 +69,10 @@ public class Adventure
 		return result;
 	}
 
-	//Quick explanation for you. The game is basically an event happens, then you get two options. Both of the options can kill you, so basically it doesn't matter which you 
-	//chose haha. So whether it goes bad (badStoryResult()) or goes good (goodStoryResult()) then it will take the even that happened (baseController.StoryOptions[randomChoice])
-	//so that it knows what the death or success stories are, and it also is supposed to take which option button was chosen. Thats the part that doesn't work. I'm simply trying
-	//pass which button was pressed to here so it knows and can show the appropriate death/success message. I've tried all sorts of ways with boolean swiches, ints, having it go
-	//through the baseController to here, having it go straight from the panel with the "myPanel.method()" thing. Etc. Always get the nullPointer exception. Thanks Again!
 	public String successStory()
 	{
 		String successStory = "";
-		if (getSuccessResult() == 0 && baseController.optionChosen() == 1) //The second part of each if statement is the part that doens't work! I'm sure there is an easier way to do this
-			//then how I did it as well, but oh well. This way worked and made sense :) Thanks Mr. Henrichson!
+		if (getSuccessResult() == 0 && baseController.optionChosen() == 1)
 		{
 			successStory = "Your sword pierces it's heart! What luck!";
 		}

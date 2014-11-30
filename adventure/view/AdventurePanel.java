@@ -124,7 +124,6 @@ public class AdventurePanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent click)
 			{
-				System.out.println("Button works");
 				dialogueArea.setText(baseController.getStoryResult());
 				optionPick = 1;
 				OptionCount();
