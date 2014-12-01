@@ -40,7 +40,10 @@ public class AdventurePanel extends JPanel
 		firstOptionButton = new JButton("Option 1");
 		dialoguePane = new JScrollPane();
 		dialogueArea.setBackground(Color.LIGHT_GRAY);
-		optionPick = 0;
+		lblSuccesses = new JLabel("Successes: ");
+		lblSuccesses.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblTheAdventureGame = new JLabel("The Adventure Game!");
+		lblTheAdventureGame.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		setupPane();
 		setupPanel();
@@ -69,29 +72,25 @@ public class AdventurePanel extends JPanel
 		this.add(firstOptionButton);
 		this.add(dialoguePane);
 		this.add(secondOptionButton);
-
+		this.add(lblSuccesses);
+		this.add(lblTheAdventureGame);
+	}
+	
+	public int setOptionPick(int pick)
+	{
+		optionPick = pick;
+		System.out.println(optionPick + " = optionPick");
+		return optionPick;
 	}
 
 	public int OptionCount()
 	{
-		int optionPicked = 0;
-		if(optionPick == 1)
-		{
-			optionPicked = 1;
-		}
-		else if(optionPick == 2)
-		{
-			optionPicked = 2;		
-		}
-		return optionPicked;
+		System.out.println(optionPick + " = OptionPick");
+		return optionPick;
 	}
-
+	
 	private void setupLayout()
 	{
-		JLabel lblSuccesses = new JLabel("Successes: ");
-		lblSuccesses.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		JLabel lblTheAdventureGame = new JLabel("The Adventure Game!");
-		lblTheAdventureGame.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		baseLayout.putConstraint(SpringLayout.SOUTH, dialogueArea, -6, SpringLayout.NORTH, firstOptionButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, firstOptionButton, 239, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, firstOptionButton, 56, SpringLayout.WEST, this);
@@ -112,8 +111,6 @@ public class AdventurePanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, secondOptionButton, -58, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, secondOptionButton, 252, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, secondOptionButton, 239, SpringLayout.NORTH, this);
-		add(lblSuccesses);
-		add(lblTheAdventureGame);
 	}
 
 	private void setupListeners()
@@ -125,8 +122,7 @@ public class AdventurePanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				dialogueArea.setText(baseController.getStoryResult());
-				optionPick = 1;
-				OptionCount();
+				setOptionPick(1);
 			}
 
 		});
@@ -137,7 +133,7 @@ public class AdventurePanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				dialogueArea.setText(baseController.getStoryResult());
-				optionPick = 2;
+				setOptionPick(2);
 			}
 
 		});
